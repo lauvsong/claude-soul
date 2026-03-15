@@ -1,0 +1,165 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(*)",
+      "Read(**)",
+      "Edit(**)",
+      "Write(**)",
+      "MultilineCommand(*)",
+      "WebFetch(*)",
+      "WebSearch(*)",
+      "Glob(*)",
+      "Grep(*)",
+      "mcp__notion__*"
+    ],
+    "deny": [
+      "Read(~/.claude/settings.json)",
+      "Read(~/.claude/settings.local.json)",
+      "Edit(~/.claude/settings.json)",
+      "Edit(~/.claude/settings.local.json)",
+      "Write(~/.claude/settings.json)",
+      "Write(~/.claude/settings.local.json)",
+      "Read(~/.claude/hooks/bash-guardrail.py)",
+      "Write(~/.claude/hooks/bash-guardrail.py)",
+      "Edit(~/.claude/hooks/bash-guardrail.py)",
+      "Read(~/.zshrc)",
+      "Edit(~/.zshrc)",
+      "Write(~/.zshrc)",
+      "Read(~/.bashrc)",
+      "Edit(~/.bashrc)",
+      "Write(~/.bashrc)",
+      "Read(~/.zprofile)",
+      "Edit(~/.zprofile)",
+      "Write(~/.zprofile)",
+      "Read(~/.bash_profile)",
+      "Edit(~/.bash_profile)",
+      "Write(~/.bash_profile)",
+      "Bash(rm -rf *)",
+      "Bash(rm -rf)",
+      "Bash(rm -r *)",
+      "Bash(mkfs *)",
+      "Bash(mkfs)",
+      "Bash(dd * of=*)",
+      "Bash(truncate *)",
+      "Bash(chmod 777 *)",
+      "Bash(git push --force *)",
+      "Bash(git push --force)",
+      "Bash(git push -f *)",
+      "Bash(git push -f)",
+      "Bash(git push *)",
+      "Bash(kubectl delete *)",
+      "Bash(kubectl delete)",
+      "Bash(kubectl drain *)",
+      "Bash(kubectl drain)",
+      "Bash(kubectl scale * --replicas=0 *)",
+      "Bash(kubectl scale * --replicas 0 *)",
+      "Bash(helm uninstall *)",
+      "Bash(helm uninstall)",
+      "Bash(helm delete *)",
+      "Bash(helm delete)",
+      "Bash(docker system prune *)",
+      "Bash(docker system prune)",
+      "Bash(brew uninstall *)",
+      "Bash(brew uninstall)",
+      "Bash(curl * | sh)",
+      "Bash(curl * | sh *)",
+      "Bash(curl * | bash)",
+      "Bash(curl * | bash *)",
+      "Bash(wget * | sh)",
+      "Bash(wget * | sh *)",
+      "Bash(wget * | bash)",
+      "Bash(wget * | bash *)",
+      "Bash(bash <*)",
+      "Bash(sh <*)",
+      "Bash(npm publish *)",
+      "Bash(npm publish)",
+      "Bash(gradlew publish *)",
+      "Bash(gradlew publish)",
+      "Bash(gh pr comment *)",
+      "Bash(gh pr comment)",
+      "Bash(printenv *)",
+      "Bash(printenv)",
+      "Bash(env)",
+      "Bash(echo *TOKEN*)",
+      "Bash(echo *SECRET*)",
+      "Bash(echo *PASSWORD*)",
+      "Bash(echo *CREDENTIAL*)",
+      "Bash(gh auth * --show-token *)",
+      "Bash(gh auth * --show-token)",
+      "Bash(sudo *)",
+      "Bash(chown *)",
+      "Bash(git reset --hard *)",
+      "Bash(git reset --hard)",
+      "Bash(git clean -fdx *)",
+      "Bash(git clean -fdx)",
+      "Bash(kill -9 *)"
+    ]
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 ~/.claude/hooks/bash-guardrail.py"
+          }
+        ]
+      }
+    ]
+  },
+  "statusLine": {
+    "type": "command",
+    "command": "bash -c '\"/opt/homebrew/bin/bun\" \"$(ls -td ~/.claude/plugins/cache/claude-hud/claude-hud/*/ 2>/dev/null | head -1)src/index.ts\"'"
+  },
+  "enabledPlugins": {
+    "context7@claude-plugins-official": true,
+    "code-simplifier@claude-plugins-official": true,
+    "Notion@claude-plugins-official": true,
+    "feature-dev@claude-plugins-official": true,
+    "code-review@claude-plugins-official": true,
+    "security-guidance@claude-plugins-official": true,
+    "ralph-loop@claude-plugins-official": true,
+    "claude-hud@claude-hud": true,
+    "everything-claude-code@everything-claude-code": true,
+    "serena@claude-plugins-official": true,
+    "playwright@claude-plugins-official": true,
+    "frontend-design@claude-plugins-official": true,
+    "superpowers@claude-plugins-official": true,
+    "claude-md-management@claude-plugins-official": true,
+    "pr-review-toolkit@claude-plugins-official": true,
+    "claude-code-setup@claude-plugins-official": true,
+    "commit-commands@claude-plugins-official": true,
+    "kotlin-lsp@claude-plugins-official": true,
+    "skill-creator@claude-plugins-official": true,
+    "postman@claude-plugins-official": true
+  },
+  "sandbox": {
+    "enabled": false,
+    "network": {
+      "allowedDomains": [
+        "*"
+      ]
+    },
+    "filesystem": {
+      "allowWrite": [
+        "~/"
+      ]
+    },
+    "permissions": {
+      "allow": [
+        "Bash(*)",
+        "Read(**)",
+        "Edit(**)",
+        "Write(**)",
+        "MultilineCommand(*)",
+        "WebFetch(*)",
+        "WebSearch(*)",
+        "Glob(*)",
+        "Grep(*)",
+        "mcp__notion__*"
+      ]
+    }
+  },
+  "skipDangerousModePermissionPrompt": true
+}

@@ -1,0 +1,31 @@
+# Claude Code runtime files
+history.jsonl
+sessions/
+session-env/
+projects/
+cache/
+debug/
+file-history/
+plans/
+tasks/
+todos/
+transcripts/
+backups/
+paste-cache/
+shell-snapshots/
+statsig/
+stats-cache.json
+telemetry/
+mcp-needs-auth-cache.json
+ide/
+plugins/
+*.bak
+settings.local.json
+
+# OS
+.DS_Store
+
+# Secrets
+.env
+*.key
+*.pem
