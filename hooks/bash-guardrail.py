@@ -65,6 +65,11 @@ DENY = {
     "echo secret var":  r"\becho\b.*\$\{?\w*(TOKEN|SECRET|PASSWORD|KEY|CREDENTIAL)\w*\b",
     "show-token":       r"\bgh\s+auth\s+.*--show-token\b",
 
+    # Encoding bypass (protected files evasion)
+    "base64 decode":    r"\bbase64\s+(-d\b|--decode\b)",
+    "printf hex":       r"\bprintf\s+.*\\x[0-9a-fA-F]",
+    "xxd reverse":      r"\bxxd\s+.*-r\b",
+
     # GitHub CLI
     "gh pr comment":    r"\bgh\s+pr\s+comment\b",
 }
