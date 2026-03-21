@@ -12,70 +12,25 @@
       "Grep(*)",
       "mcp__notion__*"
     ],
-    "deny": [
-      "Read(~/.claude/settings.json)",
-      "Read(~/.claude/settings.local.json)",
-      "Edit(~/.claude/settings.json)",
-      "Edit(~/.claude/settings.local.json)",
-      "Write(~/.claude/settings.json)",
-      "Write(~/.claude/settings.local.json)",
-      "Read(~/.claude/hooks/bash-guardrail.py)",
-      "Write(~/.claude/hooks/bash-guardrail.py)",
-      "Edit(~/.claude/hooks/bash-guardrail.py)",
-      "Read(~/.zshrc)",
-      "Edit(~/.zshrc)",
-      "Write(~/.zshrc)",
-      "Read(~/.bashrc)",
-      "Edit(~/.bashrc)",
-      "Write(~/.bashrc)",
-      "Read(~/.zprofile)",
-      "Edit(~/.zprofile)",
-      "Write(~/.zprofile)",
-      "Read(~/.bash_profile)",
-      "Edit(~/.bash_profile)",
-      "Write(~/.bash_profile)",
-      "Read(~/.ssh/**)",
-      "Edit(~/.ssh/**)",
-      "Write(~/.ssh/**)",
-      "Read(~/.aws/**)",
-      "Edit(~/.aws/**)",
-      "Write(~/.aws/**)",
-      "Read(~/.gnupg/**)",
-      "Edit(~/.gnupg/**)",
-      "Write(~/.gnupg/**)",
-      "Read(~/.kube/**)",
-      "Edit(~/.kube/**)",
-      "Write(~/.kube/**)",
-      "Read(~/.gcloud/**)",
-      "Edit(~/.gcloud/**)",
-      "Write(~/.gcloud/**)",
-      "Read(~/.npmrc)",
-      "Edit(~/.npmrc)",
-      "Write(~/.npmrc)",
-      "Read(~/.netrc)",
-      "Edit(~/.netrc)",
-      "Write(~/.netrc)",
-      "Read(~/.docker/config.json)",
-      "Edit(~/.docker/config.json)",
-      "Write(~/.docker/config.json)",
-      "Read(~/.vault-token)",
-      "Edit(~/.vault-token)",
-      "Write(~/.vault-token)",
-      "Read(~/.git-credentials)",
-      "Edit(~/.git-credentials)",
-      "Write(~/.git-credentials)"
-    ]
+    "deny": []
   },
   "hooks": {
     "PreToolUse": [
       {
         "matcher": "Bash",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "python3 ~/.claude/hooks/bash-guardrail.py"
-          }
-        ]
+        "hooks": [{ "type": "command", "command": "python3 ~/.claude/hooks/guardrail.py" }]
+      },
+      {
+        "matcher": "Read",
+        "hooks": [{ "type": "command", "command": "python3 ~/.claude/hooks/guardrail.py" }]
+      },
+      {
+        "matcher": "Edit",
+        "hooks": [{ "type": "command", "command": "python3 ~/.claude/hooks/guardrail.py" }]
+      },
+      {
+        "matcher": "Write",
+        "hooks": [{ "type": "command", "command": "python3 ~/.claude/hooks/guardrail.py" }]
       }
     ]
   },
