@@ -47,6 +47,8 @@ DENY = {
     "kubectl delete":   r"\bkubectl\s+delete\b",
     "kubectl drain":    r"\bkubectl\s+drain\b",
     "kubectl scale 0":  r"\bkubectl\s+scale\b.*--replicas[= ]*0\b",
+    "kubectl exec":     r"\bkubectl\s+exec\b",
+    "kubectl apply":    r"\bkubectl\s+apply\b",
     "helm uninstall":   r"\bhelm\s+(uninstall|delete)\b",
     "docker sys prune": r"\bdocker\s+system\s+prune\b",
     "brew uninstall":   r"\bbrew\s+uninstall\b",
@@ -70,8 +72,54 @@ DENY = {
     "printf hex":       r"\bprintf\s+.*\\x[0-9a-fA-F]",
     "xxd reverse":      r"\bxxd\s+.*-r\b",
 
-    # GitHub CLI
+    # GitHub CLI (read-only by default)
+    "gh pr create":     r"\bgh\s+pr\s+create\b",
     "gh pr comment":    r"\bgh\s+pr\s+comment\b",
+    "gh pr merge":      r"\bgh\s+pr\s+merge\b",
+    "gh pr close":      r"\bgh\s+pr\s+close\b",
+    "gh pr review":     r"\bgh\s+pr\s+review\b",
+    "gh issue create":  r"\bgh\s+issue\s+create\b",
+    "gh issue close":   r"\bgh\s+issue\s+close\b",
+    "gh issue comment":  r"\bgh\s+issue\s+comment\b",
+    "gh repo delete":   r"\bgh\s+repo\s+delete\b",
+    "gh release create": r"\bgh\s+release\s+create\b",
+    "gh release delete": r"\bgh\s+release\s+delete\b",
+    "gh api DELETE":    r"\bgh\s+api\b.*-X\s+DELETE\b",
+
+    # Package install / build (supply chain risk)
+    "npm install":       r"\bnpm\s+install\b",
+    "npm i":             r"\bnpm\s+i\b",
+    "yarn add":          r"\byarn\s+add\b",
+    "pnpm add":          r"\bpnpm\s+add\b",
+    "pip install":       r"\bpip3?\s+install\b",
+    "brew install":      r"\bbrew\s+install\b",
+    "cargo install":     r"\bcargo\s+install\b",
+
+    # Infra / IaC
+    "terraform destroy": r"\bterraform\s+destroy\b",
+    "terraform apply":   r"\bterraform\s+apply\b",
+
+    # Docker
+    "docker exec":       r"\bdocker\s+exec\b",
+
+    # Docker destructive
+    "docker rm":         r"\bdocker\s+rm\b",
+    "docker rmi":        r"\bdocker\s+rmi\b",
+    "docker stop":       r"\bdocker\s+stop\b",
+
+    # macOS system
+    "diskutil erase":    r"\bdiskutil\s+(eraseDisk|partitionDisk)\b",
+    "crontab remove":    r"\bcrontab\s+-r\b",
+    "launchctl unload":  r"\blaunchctl\s+unload\b",
+
+    # DB CLI direct access
+    "mongo shell":       r"\bmongo\s",
+    "mongosh":           r"\bmongosh\b",
+
+    # Remote access
+    "ssh":               r"\bssh\s",
+    "scp":               r"\bscp\s",
+    "rsync":             r"\brsync\s",
 }
 # ────────────────────────────────────────────────────────────
 

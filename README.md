@@ -4,10 +4,10 @@ Claude Code 영혼 분실을 대비한 커스텀 설정 백업
 
 ## 특징
 
-- **allow/deny only** — 권한을 ask(확인 후 허용)를 지양하고 최대한 allow 또는 deny로만 구성. 사람 개입 없이 작업이 끊기지 않고 완결되게 하기 위함
-- **보안 가드레일** — `settings.json`의 deny는 [미동작 버그](https://github.com/anthropics/claude-code/issues/8961)가 있어, `bash-guardrail.py` hook(정규식)이 실제 차단을 담당. 프롬프트 룰과 함께 이중 방어
-- **Read-only by default** — 외부 시스템(GitHub 등)은 조회 위주. 쓰기는 차단 혹은 명시적 승인 후에만
-- **시크릿 분리** — 토큰은 git-ignored인 `settings.local.json`에서 머신별 관리 필요
+- **Read-only by default** — 생산성보다 보안 우선. 원격 쓰기와 동료에게 잘못된 노이즈를 줄 수 있는 작업(PR 생성, 머지 등)은 대부분 차단됨
+- **allow/deny only** — ask(확인 후 허용) 보다는 allow / deny로 처리함. 미완이더라도 ask로 인한 블로킹 없이 작업이 완결되는걸 지향
+- **이중 방어** — `settings.json` deny는 [미동작 버그](https://github.com/anthropics/claude-code/issues/8961)가 있어, `bash-guardrail.py` hook(정규식)이 실제 차단 담당. 프롬프트 룰과 합쳐 2중 방어
+- **시크릿 분리** — 토큰은 git-ignored인 `settings.local.json`에서 머신별 관리
 
 ## Setup
 
