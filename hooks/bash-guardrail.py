@@ -20,9 +20,9 @@ PROTECTED_FILES = [
     r"\.zprofile",
     r"\.bash_profile",
     r"\.bashrc",
-    r"\.env",
-    r"\.key",
-    r"\.pem",
+    r"\.env\b",
+    r"\.key\b",
+    r"\.pem\b",
 ]
 # ────────────────────────────────────────────────────────────
 
