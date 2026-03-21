@@ -81,4 +81,3 @@ DENY = {
 | `/gh` | GitHub 작업 시 gh CLI 가이드 |
 | `/lesson` | 프로젝트 로컬 교훈 기록 |
 | `/lesson-global` | 전역 rules에 교훈 반영 |
-```

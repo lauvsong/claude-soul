@@ -23,6 +23,18 @@ PROTECTED_FILES = [
     r"\.env\b",
     r"\.key\b",
     r"\.pem\b",
+    # Sensitive directories
+    r"\.ssh\b",
+    r"\.aws\b",
+    r"\.gnupg\b",
+    r"\.kube\b",
+    r"\.gcloud\b",
+    # Sensitive config files
+    r"\.npmrc\b",
+    r"\.netrc\b",
+    r"\.docker/config\.json",
+    r"\.vault-token\b",
+    r"\.git-credentials\b",
 ]
 # ────────────────────────────────────────────────────────────
 
@@ -105,16 +117,31 @@ DENY = {
     # Docker destructive
     "docker rm":         r"\bdocker\s+rm\b",
     "docker rmi":        r"\bdocker\s+rmi\b",
-    "docker stop":       r"\bdocker\s+stop\b",
+
+    # Git destructive
+    "git reset --hard":  r"\bgit\s+reset\s+--hard\b",
+    "git clean":         r"\bgit\s+clean\b",
+
+    # Privilege escalation
+    "sudo":              r"\bsudo\s",
+
+    # Process kill
+    "kill":              r"\bkill\s",
+    "killall":           r"\bkillall\s",
 
     # macOS system
     "diskutil erase":    r"\bdiskutil\s+(eraseDisk|partitionDisk)\b",
     "crontab remove":    r"\bcrontab\s+-r\b",
     "launchctl unload":  r"\blaunchctl\s+unload\b",
+    "osascript":         r"\bosascript\b",
+    "defaults write":    r"\bdefaults\s+write\b",
+    "security":          r"\bsecurity\s",
 
     # DB CLI direct access
     "mongo shell":       r"\bmongo\s",
     "mongosh":           r"\bmongosh\b",
+    "psql":              r"\bpsql\s",
+    "mysql":             r"\bmysql\s",
 
     # Remote access
     "ssh":               r"\bssh\s",
@@ -122,6 +149,7 @@ DENY = {
     "rsync":             r"\brsync\s",
 }
 # ────────────────────────────────────────────────────────────
+
 
 try:
     data = json.load(sys.stdin)
