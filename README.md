@@ -2,17 +2,18 @@
 
 Claude Code 영혼 분실을 대비한 커스텀 설정 백업
 
-> [!NOTE]  
+> [!NOTE]
 > 빠른 개발보다 안전한 개발을 우선하도록 설계되었습니다.  
 > 가드레일로 인해 동작이 일부 제한될 수 있으며, 업무용에 더 적합합니다.  
 > 특히 `Kotlin` + `WebFlux` 기반 백엔드 개발 환경을 기준으로 설계되었으며, 다른 환경에서 사용할 경우 프롬프트와 rule 구성을 검수 후 사용하는 것을 권장합니다.
+
 ---
 
 ## 철학
 
-- **보안 중심 설계** — 외부 저장소/인프라에 영향을 줄 수 있는 작업은 되도록 차단하며 read-only 커맨드만 허용합니다.
+- **보안 중심 설계** — 외부 저장소/인프라에 영향을 줄 수 있는 작업은 차단하며, read-only 커맨드만 허용합니다.
 - **중단 없는 실행** — ask를 지양하고 allow/deny로 즉시 판단하여, 작업이 중단 없이 끝까지 수행되도록 합니다.
-- **가드레일 단일화** — Bash 명령과 파일 접근(Read/Edit/Write)을 모두 [`hooks/guardrail.py`](hooks/guardrail.py) 에서 통합 제어합니다.
+- **가드레일 단일화** — Bash 명령과 파일 접근(Read/Edit/Write)을 모두 [`hooks/guardrail.py`](hooks/guardrail.py)에서 통합 제어합니다.
 - **시크릿 분리 관리** — 민감 정보는 git-ignored된 `settings.local.json`에서 관리됩니다.
 
 ---
@@ -26,8 +27,19 @@ Claude Code 영혼 분실을 대비한 커스텀 설정 백업
 - **시크릿 파일 접근**
 - **차단 우회 명령어** — `eval`, `sh -c` 등
 
-차단 규칙은 [`hooks/guardrail.py`](hooks/guardrail.py)에서 관리됩니다.   
+차단 규칙은 [`hooks/guardrail.py`](hooks/guardrail.py)에서 관리됩니다.  
 `settings.json`의 deny 설정으로도 차단 가능하나 미동작 버그([#8961](https://github.com/anthropics/claude-code/issues/8961))로 인해 사용하지 않습니다.
+
+---
+
+> [!WARNING]
+> `bypassPermissions: true` 설정 시 PreToolUse 훅이 비동기로 동작하면서  
+> `exit code 2` 기반 차단이 정상적으로 적용되지 않는 문제가 있습니다.  
+>
+> 이로 인해 일부 차단 로직이 우회될 수 있으므로,  
+> `bypassPermissions` 옵션은 사용하지 않는 것을 권장합니다.  
+>
+> 관련 이슈: [#20946](https://github.com/anthropics/claude-code/issues/20946), [#26923](https://github.com/anthropics/claude-code/issues/26923)
 
 ---
 
@@ -80,15 +92,6 @@ PROTECTED_FILES = [
     r"\.my-secret-file\b",
 ]
 ```
-
----
-
-### 주의사항
-
-`bypassPermissions: true` 설정 시 PreToolUse 훅의 `exit code 2` 차단이 동작하지 않는 버그가 보고되어 있습니다.  
-([#20946](https://github.com/anthropics/claude-code/issues/20946), [#26923](https://github.com/anthropics/claude-code/issues/26923))
-
-`bypassPermissions`는 사용하지 마세요.
 
 ---
 
