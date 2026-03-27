@@ -3,7 +3,7 @@
 ## APPLICABILITY: mandatory — always active regardless of stack or project
 
 ## SUMMARY (READ FIRST)
-- Non-trivial tasks (>=3 steps or architecture decisions) start in Plan Mode.
+- Default is Direct Mode. Plan Mode activates only on multi-file changes, API/contract impact, unknown failures, or deploy risk (see R1).
 - On problems: Investigation (log/reproduction/hypothesis) → STOP & Re-plan if needed.
 - Delegate research/exploration/parallel analysis to roles (sub-agents) to keep main context clean.
 - Before done: verification + Evidence. Final check: "Would a staff engineer approve this?"
@@ -11,8 +11,14 @@
 - When transforming code patterns: verify behavioral equivalence (happy path + error path + side effects) before applying.
 
 ## RULES
-### R1) Plan Mode (default planning mode)
-- Trigger: 3+ steps OR architecture decision OR multi-step verification.
+### R1) Plan Mode (conditional — not default)
+- Default: Direct Mode (proceed without formal plan).
+- Enter Plan Mode only when ANY of these conditions apply:
+  - 3+ files to modify
+  - Public API / contract / DB schema impact
+  - Failure cause unknown (investigation needed)
+  - Deploy / production / infra risk involved
+  - Architecture decision required
 - Plan deliverable (keep brief):
   - Goals / non-goals
   - Change scope (files/modules)
