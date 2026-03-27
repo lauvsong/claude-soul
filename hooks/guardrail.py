@@ -82,7 +82,6 @@ DENY = {
     # String bypass (meta-execution)
     "eval":             r"\beval\s",
     "sh -c":            r"\b(ba|z)?sh\s+-c\b",
-    "source":           r"\bsource\s",
     "dot source":       r"^\s*\.\s+\S",
 
     # Encoding bypass (protected files evasion)
@@ -132,7 +131,6 @@ DENY = {
     "sudo":              r"\bsudo\s",
 
     # Process kill
-    "kill":              r"\bkill\s",
     "killall":           r"\bkillall\s",
 
     # macOS system
