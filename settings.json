@@ -10,7 +10,7 @@
       "WebSearch(*)",
       "Glob(*)",
       "Grep(*)",
-      "mcp__notion__*"
+      "mcp__*"
     ],
     "deny": []
   },
@@ -83,7 +83,7 @@
         "WebSearch(*)",
         "Glob(*)",
         "Grep(*)",
-        "mcp__notion__*"
+        "mcp__*"
       ]
     }
   },
