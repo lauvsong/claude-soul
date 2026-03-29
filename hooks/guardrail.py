@@ -162,6 +162,12 @@ try:
 except Exception:
     sys.exit(0)
 
+# ─── Patterns that allow Read but block Edit/Write ──────────────
+READ_ALLOWED_FILES = [
+    r"\.claude/settings\.json",
+    r"\.claude/hooks/guardrail\.py",
+]
+
 # ─── Read / Edit / Write: check file path ────────────────────────
 if tool in ("Read", "Edit", "Write"):
     file_path = tool_input.get("file_path", "")
@@ -169,6 +175,9 @@ if tool in ("Read", "Edit", "Write"):
         sys.exit(0)
     for pattern in PROTECTED_FILES:
         if re.search(pattern, file_path, re.IGNORECASE):
+            # Read is allowed for specific config files
+            if tool == "Read" and any(re.search(p, file_path, re.IGNORECASE) for p in READ_ALLOWED_FILES):
+                sys.exit(0)
             print(f"BLOCKED: {tool} access to protected file ({pattern})", file=sys.stderr)
             sys.exit(2)
     sys.exit(0)
