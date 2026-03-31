@@ -87,5 +87,14 @@
       ]
     }
   },
-  "skipDangerousModePermissionPrompt": true
+  "defaultMode": "auto",
+  "editorMode": "vim",
+  "env": {
+    "CLAUDE_CODE_SUBAGENT_MODEL": "claude-sonnet-4-6"
+  },
+  "skipDangerousModePermissionPrompt": true,
+  "attribution": {
+    "commit": "",
+    "pr": ""
+  }
 }
