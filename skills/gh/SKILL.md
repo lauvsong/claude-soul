@@ -1,21 +1,21 @@
 ---
 name: gh
 description: |
-  GitHub 작업 시 gh CLI만 사용하도록 안내하는 스킬.
-  PR 조회/생성/리뷰, 이슈 관리, 코드 검색, 릴리즈 등 모든 GitHub 작업에 적용.
-  Use when: GitHub 관련 작업 요청 시 (PR, issue, review, search, release 등)
-version: 1.0.0
+  GitHub(github.com) 작업 시 gh CLI 사용 가이드.
+  PR 조회/생성/리뷰, 이슈 관리, 코드 검색, 릴리즈 등 GitHub.com 작업에 적용.
+  Use when: GitHub.com 관련 작업, 개인/오픈소스 repo 작업 요청 시
+version: 1.1.0
 ---
 
-# gh CLI 전용 GitHub 작업 가이드
+# gh CLI — GitHub.com (개인/오픈소스)
 
 ## 원칙
-- GitHub 관련 모든 작업은 `gh` CLI로 수행한다.
+- GitHub.com 작업은 `gh` CLI로 수행한다 (hostname 지정 불필요, 기본값).
 - `gh api`로 REST API 전체에 접근 가능하므로 모든 작업이 가능하다.
 
 ## 환경
-- GitHub Enterprise: `GITHUB_HOST` 환경변수로 설정됨
-- 인증: `GITHUB_PERSONAL_ACCESS_TOKEN` 환경변수 사용
+- Host: `github.com` (기본)
+- 인증: keyring 기반 (`gh auth login`으로 설정됨)
 
 ## 주요 명령어 레퍼런스
 
